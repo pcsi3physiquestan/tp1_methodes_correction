@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. (TP) Application au tracé graphique (1h) &#8212; Méthodes expérimentales - Correction</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://pcsi3physiquestan.github.io/tp1_methodes_correction/notebook/exo_graphique.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. (TP) Utilisation d’une régression linéaire. (1h)" href="exo_comparaison.html" />
+    <link rel="prev" title="2. (TP) Application à l’étude des ultrasons. (1h)" href="exo_estimation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Méthodes expérimentales - Correction</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../tp1_methodes_correction.html">
+                    Méthodes expérimentales
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Mesure unique
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="exo_protocole.html">
+   1. (Travail) Etude préliminaire
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exo_estimation.html">
+   2. (TP) Application à l’étude des ultrasons. (1h)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Mesures multiples
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. (TP) Application au tracé graphique (1h)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exo_comparaison.html">
+   4. (TP) Utilisation d’une régression linéaire. (1h)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <a href="https://www.cedriclacpatia.fr">Site de la classe</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/notebook/exo_graphique.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebook/exo_graphique.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analyse-de-la-relation-duree-distance">
+   3.1. Analyse de la relation durée-distance
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#votre-travail">
+     3.1.1. Votre travail
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-est-a-vous">
+     3.1.2. C’est à vous.
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#codage">
+       3.1.2.1. Codage
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#premiere-analyse-des-donnees">
+       3.1.2.2. Première analyse des données.
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tp-determination-des-valeurs-de-la-celerite">
+   3.2. (TP) Détermination des valeurs de la célérité
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimation-de-la-celerite">
+     3.2.1. Estimation de la célérité.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-de-coherence-des-donnees">
+     3.2.2. Test de cohérence des données.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyse-des-donnees">
+     3.2.3. Analyse des données
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bonus-carte-de-controle">
+     3.2.4. Bonus : Carte de controle
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>(TP) Application au tracé graphique (1h)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analyse-de-la-relation-duree-distance">
+   3.1. Analyse de la relation durée-distance
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#votre-travail">
+     3.1.1. Votre travail
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-est-a-vous">
+     3.1.2. C’est à vous.
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#codage">
+       3.1.2.1. Codage
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#premiere-analyse-des-donnees">
+       3.1.2.2. Première analyse des données.
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tp-determination-des-valeurs-de-la-celerite">
+   3.2. (TP) Détermination des valeurs de la célérité
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimation-de-la-celerite">
+     3.2.1. Estimation de la célérité.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-de-coherence-des-donnees">
+     3.2.2. Test de cohérence des données.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyse-des-donnees">
+     3.2.3. Analyse des données
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bonus-carte-de-controle">
+     3.2.4. Bonus : Carte de controle
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p>La page ci-présente existe en version notebook téléchargeable grâce au bouton <img alt="Bouton" src="../_images/bouton_tl.png" /> (choisir le format <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>). On rappelle qu’l faut ensuite l’enregistrer dans un répertoire adéquat sur votre ordinateur (<code class="docutils literal notranslate"><span class="pre">tp1</span></code> par exemple dans votre répertoire personnel) puis lancer Jupyter Notebook depuis Anaconda pour accéder au notebook, le modifier et exécutez les cellules de code adéquates.</p>
+<div class="tex2jax_ignore mathjax_ignore section" id="tp-application-au-trace-graphique-1h">
+<h1><span class="section-number">3. </span>(TP) Application au tracé graphique (1h)<a class="headerlink" href="#tp-application-au-trace-graphique-1h" title="Permalink to this headline">#</a></h1>
+<div class="section" id="analyse-de-la-relation-duree-distance">
+<h2><span class="section-number">3.1. </span>Analyse de la relation durée-distance<a class="headerlink" href="#analyse-de-la-relation-duree-distance" title="Permalink to this headline">#</a></h2>
+<div class="section" id="votre-travail">
+<h3><span class="section-number">3.1.1. </span>Votre travail<a class="headerlink" href="#votre-travail" title="Permalink to this headline">#</a></h3>
+<p>Vous aller devoir exploiter non plus une mesure de temps de vol pour une distance émetteur-récepteur mais regrouper l’ensemble de résultats de mesure
+des groupes de TP pour affiner votre mesure de la célérité.</p>
+<p>Pour pouvoir tester votre code, des données expérimentales <strong>fictives</strong> sont entrées dans la cellule suivante.
+En TP, vous récupérerez l’ensemble des données de mesure des différents binômes et modifierez ces listes.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># Pensez à l&#39;alias de la bibliothèques numpy pour la suite.</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">rd</span>
+<span class="sd">&quot;&quot;&quot;Données expérimentales</span>
+
+<span class="sd">Pensez à entre les 4 listes dans le même ordre.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">55</span><span class="p">])</span>  <span class="c1"># Liste des distances E-R (en cm - évitez les nombres trop petits)</span>
+<span class="n">ud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.172</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">,</span> <span class="mf">0.082</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.204</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.082</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">])</span>  <span class="c1"># Liste des incertitudes sur d</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.27</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">0.548</span><span class="p">,</span> <span class="mf">0.705</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="mf">1.098</span><span class="p">,</span> <span class="mf">1.14</span><span class="p">,</span> <span class="mf">1.584</span><span class="p">])</span>  <span class="c1"># Liste des temps de vol (en ms)</span>
+<span class="n">udt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0245</span><span class="p">,</span> <span class="mf">0.039</span><span class="p">,</span> <span class="mf">0.057</span><span class="p">,</span> <span class="mf">0.028</span><span class="p">,</span> <span class="mf">0.0506</span><span class="p">,</span> <span class="mf">0.037</span><span class="p">,</span> <span class="mf">0.041</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.027</span><span class="p">,</span> <span class="mf">0.031</span><span class="p">])</span>  <span class="c1"># Liste des incertitudes sur Delta t</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">ud</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dt</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">udt</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 10 10 10
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="c-est-a-vous">
+<h3><span class="section-number">3.1.2. </span>C’est à vous.<a class="headerlink" href="#c-est-a-vous" title="Permalink to this headline">#</a></h3>
+<div class="section" id="codage">
+<h4><span class="section-number">3.1.2.1. </span>Codage<a class="headerlink" href="#codage" title="Permalink to this headline">#</a></h4>
+<p>C’est à vous de coder maintenant la cellule suivante est entièrement à votre disposition. Vous devez obtenir en sortie
+le graphique représentant <span class="math notranslate nohighlight">\(\Delta t\)</span> en fonction <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<p>Pensez bien :</p>
+<ul class="simple">
+<li><p>aux légendes du graphiques</p></li>
+<li><p>aux barres d’incertitudes</p></li>
+</ul>
+<p><em>On rappelle que les vecteurs contenant les données ont déjà été créé dans la première cellule : <code class="docutils literal notranslate"><span class="pre">d,</span> <span class="pre">ud,</span> <span class="pre">dt,</span> <span class="pre">udt</span></code>. Pensez à utiliser le <a class="reference external" href="https://pcsi3physiquestan.github.io/intro_python/notebook/plt_presentation.html#un-exemple-basique">modèle</a>.</em></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Votre code</span>
+
+<span class="sd">A vous de coder le graphique à tracer.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Créer la fenêtre graphique avec subplots</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1"># Donner un titre (f.suptitle) et des légendes (ax.set_xlabel et ax.set_ylabel)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Relation entre temps de vol et distance&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance d (cm)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Temps de vol (ms)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tracer la courbe Delta t (D) avec errorbar</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">xerr</span><span class="o">=</span><span class="n">ud</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">udt</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># Afficher une grille (ax.grid) et afficher le graphique (plt.show)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/exo_graphique_7_0.png" src="../_images/exo_graphique_7_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="premiere-analyse-des-donnees">
+<h4><span class="section-number">3.1.2.2. </span>Première analyse des données.<a class="headerlink" href="#premiere-analyse-des-donnees" title="Permalink to this headline">#</a></h4>
+<p>Lorsque vous aurez obtenu le graphique des données expérimentales réelles, analysez le :</p>
+<ul class="simple">
+<li><p>Que cherche-t-on à observer ?</p></li>
+<li><p>Observe-t-on ce qu’on attend ?</p></li>
+<li><p>Si oui, tant mieux, sinon essayez de comprendre où sont les problèmes.</p></li>
+</ul>
+<p>Ecrire alors le compte-rendu de votre analyse.</p>
+</div>
+</div>
+</div>
+<div class="section" id="tp-determination-des-valeurs-de-la-celerite">
+<h2><span class="section-number">3.2. </span>(TP) Détermination des valeurs de la célérité<a class="headerlink" href="#tp-determination-des-valeurs-de-la-celerite" title="Permalink to this headline">#</a></h2>
+<p>Quand on est face à une série de mesures, il y a deux analyses à réaliser en général:</p>
+<ul class="simple">
+<li><p>déterminer une mesure basées sur la série. On peut utiliser plusieurs méthodes mais on va ici simplement utiliser un calcul de moyenne des valeurs. On peut alors estimer l’incertitude de mesure comme étant l’incertitude sur la moyenne d’un échantillon.</p></li>
+<li><p>Vérifier (au moins <em>a posteriori</em>) que les mesures sont cohérentes entre elles (plus simplement ici avec la moyennes estimées).</p></li>
+</ul>
+<div class="section" id="estimation-de-la-celerite">
+<h3><span class="section-number">3.2.1. </span>Estimation de la célérité.<a class="headerlink" href="#estimation-de-la-celerite" title="Permalink to this headline">#</a></h3>
+<p>Cette partie va nous amener:</p>
+<ol class="simple">
+<li><p>à estimer la célérité pour chaque couple de mesure.</p></li>
+<li><p>à réaliser ensuite la moyenne des mesures.</p></li>
+<li><p>à estimer l’incertitude comme pour un étude statistique (Type A):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+u(c_{moy}) = \frac{\sigma(echantillon)}{\sqrt{nombre_echantillons}}
+\]</div>
+<p>où <span class="math notranslate nohighlight">\(sigma\)</span> est l’écart-type statistique calculé sur la série de mesures (réelles ici et non simulées !).</p>
+<p>Détecter et modifier les lignes lorsque c’est nécessaire.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Estimation des celerites pour chaque mesures</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">c_ms</span> <span class="o">=</span> <span class="n">d</span> <span class="o">/</span> <span class="n">dt</span> <span class="o">*</span> <span class="mi">10</span> <span class="c1"># d et dt sont des vecteurs numpy : pensez à utiliser la vectorialisation. Le *10 est pour passer en m/s</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Calculer la célérité moyenne.</span>
+<span class="sd">Utiliser la fonction np.mean(vecteur:ndarray) -&gt; float pour calculer une moyenne en une seule ligne.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">c_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">c_ms</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Calculer l&#39;incertitude sur c_mean en utilisant la relation donnée.</span>
+<span class="sd">On rappelle quie l&#39;écart-type se calcule avec la fonction numpy.std(echantillon: ndarray, ddof=1) -&gt; float</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">c_u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">c_ms</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c_ms</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;c = </span><span class="si">{}</span><span class="s2"> +/- </span><span class="si">{}</span><span class="s2"> m/s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c_mean</span><span class="p">,</span> <span class="n">c_u</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c = 356.52662305266074 +/- 6.667201021099089 m/s
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Rendre compte de la valeur estimée en n’oubliant pas l’unité et la réflexion sur les chiffres significatifs.</strong></p>
+</div>
+<div class="section" id="test-de-coherence-des-donnees">
+<h3><span class="section-number">3.2.2. </span>Test de cohérence des données.<a class="headerlink" href="#test-de-coherence-des-donnees" title="Permalink to this headline">#</a></h3>
+<p>Pour tester la cohérence des données, on va tester la cohérence entre la mesure de <span class="math notranslate nohighlight">\(c\)</span> pour chaque échantillon et la moyenne précédente. On connait déjà une méthode pour le faire : un calcul d’écart normalisé. Ainsi, on pourra, si nécessaire écarter ou au moins commenter une mesure qui semblerait incohérente.</p>
+<p>On possède déjà les mesures des célérités <code class="docutils literal notranslate"><span class="pre">c_ms</span></code>, la célérité moyenne <code class="docutils literal notranslate"><span class="pre">c_mean</span></code> et son incertitude <code class="docutils literal notranslate"><span class="pre">c_u</span></code>, il manque l’incertitude sur mesure unique de célérité. On va reprendre la même méthode que pour la mesure unique de la partie précédente, mais pour gagner du temps, on part directement de <span class="math notranslate nohighlight">\(d, u(d), \Delta t, u(\Delta t)\)</span> donnée et on va <strong>utiliser des distributions uniformes.</strong> Donc:</p>
+<ol class="simple">
+<li><p>On boucle sur le nombre d’échantillons:</p>
+<ol class="simple">
+<li><p>On simule N valeurs de <span class="math notranslate nohighlight">\(d\)</span> et <span class="math notranslate nohighlight">\(\Delta t\)</span> pour le j-ième échantillon et on en déduit N valeurs de c puis son incertitude. (Utiliser la méthode 3 qui est beaucoup plus rapide).</p></li>
+<li><p>On stocke l’incertitude obtenue dans une liste <code class="docutils literal notranslate"><span class="pre">c_us</span></code> qu’on aura préalablement initialisée.</p></li>
+<li><p>On calculer l’écart-normalisé entre le j-ième échantillon et la moyenne qu’on stocke dans une liste <code class="docutils literal notranslate"><span class="pre">en_s</span></code></p></li>
+</ol>
+</li>
+<li><p>On représente les valeurs des écarts normalisés sur un graphique qu’on analuse ensuite.</p></li>
+</ol>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A vous de compléter la boucle en vous aidant de ce qui a été fait pour une mesure unique.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">c_us</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">en_s</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>  <span class="c1"># Nombre d&#39;échantillons</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100000</span>  <span class="c1"># Nombre de simulations</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="c1"># j  sera le numéro de l&#39;échantillon</span>
+    <span class="sd">&quot;&quot;&quot; Simuler les valeurs de d et dt puis estimer c et l&#39;incertitude&quot;&quot;&quot;</span>
+    <span class="n">dj_sim</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">rd</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">ud</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">ud</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">dtj_sim</span> <span class="o">=</span> <span class="n">dt</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">rd</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">udt</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">udt</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">N</span><span class="p">)</span>
+
+    <span class="n">c_sim</span> <span class="o">=</span> <span class="n">dj_sim</span> <span class="o">/</span> <span class="n">dtj_sim</span>
+
+    <span class="n">c_uj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">c_sim</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">c_us</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_uj</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Calculer l ecart normalise a la moyenne&quot;&quot;&quot;</span>
+    <span class="n">en_j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">c_ms</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">c_mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">c_u</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">c_uj</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">en_s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">en_j</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">en_s</span><span class="p">)</span>  <span class="c1"># Pour vérifier ce qu&#39;il y a dedans</span>
+
+<span class="sd">&quot;&quot;&quot;Tracé eds écart normalisés&quot;&quot;&quot;</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Coherence des differentes mesures&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance (d) (cm)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;EN&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">en_s</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># On ne relit pas les points</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.9902260533140332, 3.3347480417640907, 0.7245640493157491, 1.2488506708441174, 0.28062672531101845, 7.219400439712917, 2.490839710425362, 2.9064862876378634, 0.8451184489886788, 1.3917530308389667]
+</pre></div>
+</div>
+<img alt="../_images/exo_graphique_13_1.png" src="../_images/exo_graphique_13_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="analyse-des-donnees">
+<h3><span class="section-number">3.2.3. </span>Analyse des données<a class="headerlink" href="#analyse-des-donnees" title="Permalink to this headline">#</a></h3>
+<p>Réalisez une analyse des valeurs obtenues pour chaque groupe puis de la célérité moyenne en comparaison avec la valeur donnée dans la littérature.</p>
+<p><strong>Avec l’exemple des données, on observe ici plusieurs données en contradiction avec l’ensemble des données. En pratique, il faudrait refaire les mesure ou au moins ne sélection que les données les plus pertinentes.</strong></p>
+</div>
+<div class="section" id="bonus-carte-de-controle">
+<h3><span class="section-number">3.2.4. </span>Bonus : Carte de controle<a class="headerlink" href="#bonus-carte-de-controle" title="Permalink to this headline">#</a></h3>
+<p>On pourrait, au lieu de tracer les ecarts normalisés, tracer une carte de controle qu représente les barres d’incertitudes et la moyenne (avec son incertitudes). Cette méthode est plus visuelle mais attention car les impressions ne correspondent pas tout à fait à ce que donne les EN (cf. TP).</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Carte de controle des mesures&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance (d) (cm)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;EN&quot;</span><span class="p">)</span>
+
+<span class="c1"># capsize sert à ajouter des barres aux extrémités simplement par esthétisime.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">c_ms</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">c_us</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># On ne relit pas les points</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">([</span><span class="n">c_mean</span> <span class="o">-</span> <span class="n">c_u</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">c_mean</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>  <span class="c1"># Tracé de la moyenne</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">c_mean</span> <span class="o">-</span> <span class="n">c_u</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>  <span class="c1"># Valeur basse de l&#39;intervalle associée à l&#39;incertitude sur c_mean</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">c_mean</span> <span class="o">+</span> <span class="n">c_u</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>  <span class="c1"># Valeur haute de l&#39;intervalle associée à l&#39;incertitude sur c_mean</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+<img alt="../_images/exo_graphique_15_1.png" src="../_images/exo_graphique_15_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebook"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="exo_estimation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>(TP) Application à l’étude des ultrasons. (1h)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="exo_comparaison.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>(TP) Utilisation d’une régression linéaire. (1h)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By C. Lacpatia<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
